@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import RailzConnect from "@railzai/railz-connect";
+import { useEffect, useRef } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const ref = useRef();
+
+  useEffect(() => {
+    const widget = new RailzConnect();
+    widget.open({
+      parentElement: ref.current,
+      widgetId: "wid_dev_bd3774f1-2422-44bb-bb80-90fb71256ee5",
+      endpoint: "http://localhost:3000",
+      options: {
+        components: {
+          back: true,
+        },
+      },
+    });
+  }, []);
+
+  return <div id="gabriel"></div>;
 }
 
 export default App;
